@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-const base = 'http://localhost:4000/';
+const base = 'http://localhost:5000/';
 const API = {
-  login: base + 'user/login',
-  signup: base + 'user/signup',
+  login: base + 'login',
+  signup: base + 'signup',
 };
 
 export interface LoginPayload {
-  email: string;
+  phone: string;
   password: string;
 }
 
-async function login({ email, password }: LoginPayload) {
-  const data = await axios.post(base + API.login, { email, password });
+async function login({ phone, password }: LoginPayload) {
+  const data = await axios.post(API.login, { phone, password });
   return data;
 }
 const userAPI = { login };

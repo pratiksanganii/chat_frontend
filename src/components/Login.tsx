@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../app/userSlice';
+import { showError } from '../app/errorSlice';
 
 const Login = () => {
   const [phone, setPhone] = useState('');
@@ -43,9 +44,14 @@ const Login = () => {
                 required
                 value={phone}
                 onChange={(e) => {
-                  if (isNaN(+e.target.value)) setPhone(e.target.value);
-                  else {
-                  }
+                  if (!isNaN(+e.target.value)) setPhone(e.target.value);
+                  else
+                    dispatch(
+                      showError({
+                        title: 'Invalid phone',
+                        sub_title: 'Phone must be number.',
+                      })
+                    );
                 }}
                 className='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-2'
               />
@@ -75,12 +81,15 @@ const Login = () => {
             </div>
           </div>
 
-          <div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
             <button
               type='submit'
-              className='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+              className='flex mx-3 justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
             >
               Sign in
+            </button>
+            <button className='flex border border-3 justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+              Sign up
             </button>
           </div>
         </form>

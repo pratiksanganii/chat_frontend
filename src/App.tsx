@@ -13,13 +13,13 @@ function App() {
       className='App bg-gray-700 text-cyan-50'
       style={{ height: '100vh', width: '100vw' }}
     >
+      {error.show && <Error title={error.title} subTitle={error.sub_title} />}
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Dashboard />} />
           <Route path='/login' element={<Login />} />
           <Route path='/sign-up' element={<SignUp />} />
         </Routes>
-        {error.show && <Error title={error.title} subTitle={error.sub_title} />}
       </BrowserRouter>
     </div>
   );

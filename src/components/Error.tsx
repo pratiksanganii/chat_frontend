@@ -14,8 +14,11 @@ const Error = ({ title, subTitle }: { title: string; subTitle: string }) => {
     <div
       style={{
         display: 'flex',
+        width: '100%',
+        top: '85vh',
         justifyContent: 'flex-end',
-        // overflow: 'hidden',
+        position: 'absolute',
+        overflow: 'hidden',
       }}
     >
       <style>{`
@@ -30,7 +33,7 @@ const Error = ({ title, subTitle }: { title: string; subTitle: string }) => {
       `}</style>
       <div
         id='error'
-        style={{ width: '200px', marginRight: '-200px' }}
+        style={{ width: 'auto', marginRight: '-200px' }}
         className='bg-red-100 border-l-4 border-red-500 text-red-700 p-4'
         role='alert'
       >

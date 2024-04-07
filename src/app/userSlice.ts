@@ -3,7 +3,7 @@ import { LoginPayload, userAPI } from './backend';
 
 const initialState = {
   user: undefined,
-  token: undefined,
+  token: localStorage.getItem('accessToken') ?? undefined,
 };
 
 export const login = createAsyncThunk(
@@ -29,7 +29,10 @@ export const userSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    builder.addCase(login.fulfilled, (state, action) => {});
+    builder.addCase(login.fulfilled, (state, action) => {
+      state.user = action.payload.payload;
+      state.token = action.payload.token;
+    });
     builder.addCase(login.rejected, (state, action) => {});
   },
 });

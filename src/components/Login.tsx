@@ -1,16 +1,24 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../app/userSlice';
 import { showError } from '../app/errorSlice';
+import { useNavigate } from 'react-router-dom';
+import { RootState } from '../app/store';
 
 const Login = () => {
+  const user = useSelector((state: RootState) => state.user);
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const dispatch: any = useDispatch();
+  const navigate = useNavigate();
   const submit = (e: any) => {
     e.preventDefault();
     dispatch(login({ phone, password }));
   };
+  useEffect(() => {
+    const token = user.token;
+    if (token) navigate('/');
+  }, [navigate, user.token]);
 
   return (
     <div style={{ width: '100vw', height: '90vh', display: 'flex' }}>
@@ -88,7 +96,12 @@ const Login = () => {
             >
               Sign in
             </button>
-            <button className='flex border border-3 justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
+            <button
+              onClick={() => {
+                navigate('/signup');
+              }}
+              className='flex border border-3 justify-center rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
+            >
               Sign up
             </button>
           </div>

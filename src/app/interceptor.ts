@@ -5,7 +5,7 @@ export default function setInterceptor(axios: Axios) {
     (value) => {
       return value;
     },
-    (error) => { 
+    (error) => {
       return error;
     }
   );

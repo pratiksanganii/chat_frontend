@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
+import { Socket } from 'socket.io-client';
 
-const ActiveChat = () => {
+const ActiveChat = ({ client }: { client?: Socket }) => {
   return <div>ActiveChat</div>;
 };
 

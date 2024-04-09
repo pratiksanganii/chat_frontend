@@ -32,6 +32,7 @@ export const userSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.user = action.payload.payload;
       state.token = action.payload.token;
+      localStorage.setItem('accessToken', action.payload.token);
     });
     builder.addCase(login.rejected, (state, action) => {});
   },

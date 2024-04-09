@@ -1,9 +1,9 @@
 import axios from 'axios';
 import setInterceptor from './interceptor';
-const base = 'http://localhost:4000/api/';
+const baseUrl = 'http://localhost:4000/api/';
 const API = {
-  login: base + 'user/login',
-  signup: base + 'user/signup',
+  login: baseUrl + 'user/login',
+  signup: baseUrl + 'user/signup',
 };
 
 export interface LoginPayload {
@@ -17,4 +17,4 @@ async function login({ phone, password }: LoginPayload) {
   return data;
 }
 const userAPI = { login };
-export { userAPI };
+export { userAPI, baseUrl };
